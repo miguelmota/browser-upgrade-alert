@@ -42,8 +42,8 @@
 
     for (i = 0; i < len; i += 1) {
       _allowed = allowed[i].split(' ');
-      browserMatch = who[0] === _allowed[0];
-      versionMatch = who[1] >= _allowed[1];
+      browserMatch = who[0].toLowerCase() === _allowed[0].toLowerCase();
+      versionMatch = Number(who[1]) >= Number(_allowed[1]);
 
       if (browserMatch && versionMatch) {
         return true;
