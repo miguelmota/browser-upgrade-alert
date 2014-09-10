@@ -1,5 +1,6 @@
 (function(window) {
-  var msg1 = "Did you know that your Browser is out of date?",
+  var allowed = ['MSIE 9', 'Firefox 30', 'Safari 5.1', 'Opera 23', 'Chrome 27'],
+      msg1 = "Did you know that your Browser is out of date?",
       msg2 = "To get the best possible experience using our website we recommend that you upgrade to a newer version or other web browser. A list of the most popular web browsers can be found below.",
       msg3 = "Just click on the icons to get to the download page.",
       br1 = "Internet Explorer 9+",
@@ -12,7 +13,6 @@
       url3 = "http://www.apple.com/safari/download/",
       url4 = "http://www.opera.com/download/",
       url5 = "http://www.google.com/chrome",
-      allowed = ['MSIE 9', 'Firefox 30', 'Safari 5.1', 'Opera 23', 'Chrome 27'],
       imgPath;
 
   function navigatorWho() {
