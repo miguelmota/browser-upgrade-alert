@@ -8,15 +8,14 @@ What I've added is browser detection, which you can set the allowed versions (`b
 
 ```javascript
 var allowed = ['MSIE 9', 'Firefox 30', 'Safari 5.1', 'Opera 23', 'Chrome 27'];
+var imagePath = './';
 ```
 
 # Usage
 
 ```html
-<script src="browser-upgrade.js"></script><script>window.onload=function(){e('./')}</script>
+<script src="browser-upgrade.js"></script>
 ```
-
-`e` expects the image directory path.
 
 # License
 

@@ -1,19 +1,22 @@
-(function(window) {
+(function(window, undefined) {
   var allowed = ['MSIE 9', 'Firefox 30', 'Safari 5.1', 'Opera 23', 'Chrome 27'],
+      imagePath = './',
       msg1 = "Did you know that your Browser is out of date?",
       msg2 = "To get the best possible experience using our website we recommend that you upgrade to a newer version or other web browser. A list of the most popular web browsers can be found below.",
       msg3 = "Just click on the icons to get to the download page.",
-      br1 = "Internet Explorer 9+",
-      br2 = "Firefox 30+",
-      br3 = "Safari 5.1+",
-      br4 = "Opera 23+",
-      br5 = "Chrome 27+",
       url1 = "http://www.microsoft.com/windows/Internet-explorer/default.aspx",
       url2 = "http://www.mozilla.com/firefox/",
       url3 = "http://www.apple.com/safari/download/",
       url4 = "http://www.opera.com/download/",
       url5 = "http://www.google.com/chrome",
-      imgPath;
+      browsers = {
+        msie: "Internet Explorer 9+",
+        firefox: "Firefox 30+",
+        safari: "Safari 5.1+",
+        opera: "Opera 23+",
+        chrome: "Chrome 27+",
+      };
+
 
   function navigatorWho() {
       var ua = navigator.userAgent, tem,
@@ -31,6 +34,31 @@
       return M.join(' ');
   }
 
+  function browserTitles() {
+    var i = 0,
+        len = allowed.length,
+        _allowed,
+        browserMatch,
+        versionMatch;
+
+    for (i = 0; i < len; i += 1) {
+      _allowed = allowed[i].split(' ');
+      browser = _allowed[0].toLowerCase();
+      version = Number(_allowed[1]);
+
+      var map = {
+        msie: 'Internet Explorer',
+        firefox: 'FireFox',
+        safari: 'Safari',
+        opera: 'Opera',
+        chrome: 'Chrome'
+      };
+
+      if (browser in map) {
+        browsers[browser]= [map[browser], ' ', version, '+'].join('');
+      }
+    }
+  }
 
   function needUpgrade() {
     var i = 0,
@@ -56,7 +84,9 @@
   function e(str) {
       if (needUpgrade()) return false;
 
-      imgPath = str;
+      browserTitles();
+
+      imagePath = str;
       var _body = document.getElementsByTagName('body')[0],
           _d = document.createElement('div'),
           _l = document.createElement('div'),
@@ -180,7 +210,7 @@
           _li3ds = _li3d.style,
           _li4ds = _li4d.style,
           _li5ds = _li5d.style;
-      _li1ds.background = _li2ds.background = _li3ds.background = _li4ds.background = _li5ds.background = "transparent url('" + imgPath + "background_browser.gif') no-repeat scroll left top";
+      _li1ds.background = _li2ds.background = _li3ds.background = _li4ds.background = _li5ds.background = "transparent url('" + imagePath + "background_browser.gif') no-repeat scroll left top";
       _li1ds.cursor = _li2ds.cursor = _li3ds.cursor = _li4ds.cursor = _li5ds.cursor = "pointer";
       _li1d.onclick = function() {
           window.location = url1
@@ -215,16 +245,16 @@
       _ico1ds.width = _ico2ds.width = _ico3ds.width = _ico4ds.width = _ico5ds.width = "100px";
       _ico1ds.height = _ico2ds.height = _ico3ds.height = _ico4ds.height = _ico5ds.height = "100px";
       _ico1ds.margin = _ico2ds.margin = _ico3ds.margin = _ico4ds.margin = _ico5ds.margin = "1px auto";
-      _ico1ds.background = "transparent url('" + imgPath + "browser_ie.gif') no-repeat scroll left top";
-      _ico2ds.background = "transparent url('" + imgPath + "browser_firefox.gif') no-repeat scroll left top";
-      _ico3ds.background = "transparent url('" + imgPath + "browser_safari.gif') no-repeat scroll left top";
-      _ico4ds.background = "transparent url('" + imgPath + "browser_opera.gif') no-repeat scroll left top";
-      _ico5ds.background = "transparent url('" + imgPath + "browser_chrome.gif') no-repeat scroll left top";
-      _lit1.appendChild(document.createTextNode(br1));
-      _lit2.appendChild(document.createTextNode(br2));
-      _lit3.appendChild(document.createTextNode(br3));
-      _lit4.appendChild(document.createTextNode(br4));
-      _lit5.appendChild(document.createTextNode(br5));
+      _ico1ds.background = "transparent url('" + imagePath + "browser_ie.gif') no-repeat scroll left top";
+      _ico2ds.background = "transparent url('" + imagePath + "browser_firefox.gif') no-repeat scroll left top";
+      _ico3ds.background = "transparent url('" + imagePath + "browser_safari.gif') no-repeat scroll left top";
+      _ico4ds.background = "transparent url('" + imagePath + "browser_opera.gif') no-repeat scroll left top";
+      _ico5ds.background = "transparent url('" + imagePath + "browser_chrome.gif') no-repeat scroll left top";
+      _lit1.appendChild(document.createTextNode(browsers.msie));
+      _lit2.appendChild(document.createTextNode(browsers.firefox));
+      _lit3.appendChild(document.createTextNode(browsers.safari));
+      _lit4.appendChild(document.createTextNode(browsers.opera));
+      _lit5.appendChild(document.createTextNode(browsers.chrome));
       var _lit1d = document.getElementById('_lit1'),
           _lit2d = document.getElementById('_lit2'),
           _lit3d = document.getElementById('_lit3'),
@@ -244,6 +274,8 @@
       _lit1ds.textAlign = _lit2ds.textAlign = _lit3ds.textAlign = _lit4ds.textAlign = _lit5ds.textAlign = "center";
   }
 
-  window.e = e;
+  window.onload = function() {
+    e(imagePath);
+  };
 
 })(window);
