@@ -159,7 +159,6 @@
       _dl.style.position = "fixed";
       _dl.style.top = "0px";
       _dl.style.left = "0px";
-      _dl.style.filter = "alpha(opacity=50)";
       _dl.style.background = "#fff";
       _dl.style.zIndex = 100000;
       var _dd = document.getElementById('_d');
